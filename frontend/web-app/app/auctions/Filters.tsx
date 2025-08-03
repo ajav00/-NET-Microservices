@@ -68,6 +68,7 @@ export const Filters = () => {
                                 key={value}
                                 onClick={()=> setParams({filterBy: value})}
                                 color={`${filterBy === value} ? 'red' : 'green'`}
+                                className='border border-gray-300 flex items-center'
                                 >
                                 <Icon className='mr-3 h-4 w-4'/>
                                 {label}
@@ -88,6 +89,7 @@ export const Filters = () => {
                                 key={value}
                                 onClick={()=> setParams({orderBy: value})}
                                 color={`${orderBy === value} ? 'red' : 'green'`}
+                                className='border border-gray-300 flex items-center'
                                 >
                                 <Icon className='mr-3 h-4 w-4'/>
                                 {label}
@@ -104,7 +106,7 @@ export const Filters = () => {
                 <ButtonGroup>
                 {pageSizeButtons.map((value, i)=>(
                         <Button
-                        className='focus:ring-0'
+                        className='focus:ring-0 '
                         key={i}
                         onClick={() => setParams({pageSize: value})}
                         color={`${pageSize === value ? 'red' : 'gray'}`}
