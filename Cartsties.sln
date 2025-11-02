@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayService", "src\Gatew
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiddingService", "src\BiddingService\BiddingService.csproj", "{38367345-AA21-4A8C-B0C8-DDED89A98538}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "src\NotificationService\NotificationService.csproj", "{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,18 @@ Global
 		{38367345-AA21-4A8C-B0C8-DDED89A98538}.Release|x64.Build.0 = Release|Any CPU
 		{38367345-AA21-4A8C-B0C8-DDED89A98538}.Release|x86.ActiveCfg = Release|Any CPU
 		{38367345-AA21-4A8C-B0C8-DDED89A98538}.Release|x86.Build.0 = Release|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Debug|x64.Build.0 = Debug|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Debug|x86.Build.0 = Debug|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Release|x64.ActiveCfg = Release|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Release|x64.Build.0 = Release|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Release|x86.ActiveCfg = Release|Any CPU
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,5 +124,6 @@ Global
 		{DAA068DC-2E03-491D-8616-91A40146A2AF} = {A721C222-ABBE-4E21-BAB9-EC07D8258461}
 		{48B272C2-24C7-42E7-8A7D-AF87D01BD994} = {A721C222-ABBE-4E21-BAB9-EC07D8258461}
 		{38367345-AA21-4A8C-B0C8-DDED89A98538} = {A721C222-ABBE-4E21-BAB9-EC07D8258461}
+		{28FAADBF-F3E8-4DEB-BFC4-CD9345AD73BC} = {A721C222-ABBE-4E21-BAB9-EC07D8258461}
 	EndGlobalSection
 EndGlobal
