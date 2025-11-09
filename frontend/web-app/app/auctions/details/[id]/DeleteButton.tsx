@@ -1,3 +1,5 @@
+'use client'
+
 import { deleteAuction } from '@/app/actions/auctionAction';
 import { Button, Spinner } from 'flowbite-react';
 import { useRouter } from 'next/navigation';
