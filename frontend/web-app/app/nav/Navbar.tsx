@@ -1,13 +1,15 @@
+'use client'
+
 import React from 'react'
-import { AiOutlineCar } from 'react-icons/ai'
 import { Logo } from './Logo'
 import { Search } from './Search'
 import LoginButton from './LoginButton'
-import { getCurrentUser } from '../actions/authActions'
 import UserActions from './UserActions'
+import { useSession } from 'next-auth/react'
 
-export default async function Navbar() {
-  const user = await getCurrentUser();
+export default function Navbar() {
+  const session = useSession();
+  const user = session.data?.user;
 
   return (
     <header className='

@@ -6,7 +6,6 @@ import { Dropdown, DropdownDivider, DropdownItem } from 'flowbite-react'
 import { User } from 'next-auth'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 import { AiFillCar, AiFillTrophy, AiOutlineLogout } from 'react-icons/ai'
 import { HiCog, HiUser } from 'react-icons/hi'
@@ -16,8 +15,6 @@ type Props = {
 }
 
 export default function UserActions ({ user } : Props) {
-  const router = useRouter();
-  const pathname = usePathname();
   const setParams = useParamStore((state) => state.setParams);
 
   function setWinner() {

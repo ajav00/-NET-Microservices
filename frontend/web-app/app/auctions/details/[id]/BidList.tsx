@@ -64,7 +64,7 @@ export default function BidList({ user, auction }: Props) {
 					/>
 				) : (
 					<>
-						{bids.map((bid, index) => (
+						{bids.map((bid) => (
 							<BidItem key={bid.id} bid={bid} />
 						))}
 					</>

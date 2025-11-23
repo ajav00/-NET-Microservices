@@ -1,7 +1,7 @@
 "use client";
 
 import { useParamStore } from "@/hooks/useParamStore";
-import React, { useState } from "react";
+import React from "react";
 import { FaSearch } from "react-icons/fa";
 
 export const Search = () => {
@@ -9,7 +9,7 @@ export const Search = () => {
 	const setSearchValue = useParamStore((state) => state.setSearchValue);
 	const searchValue = useParamStore((state) => state.searchValue);
 
-	function onChange(event: any) {
+	function onChange(event:any) {
 		setSearchValue(event.target.value);
 	}
 
