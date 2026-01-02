@@ -32,11 +32,19 @@ export default function BidList({ user, auction }: Props) {
 
 	useEffect(() => {
 		getBidsForAuction(auction.id)
-			.then((res: any) => {
-				if (res.error) throw res.error;
-				setBids(res as Bid[]);
+			.then((res: Bid[] | {error: {status: number, message: string}}) => {
+				if ('error' in res) throw res.error;
+				setBids(res);
 			})
-			.catch((error) => toast.error(error.status + ": " + error.message))
+			.catch((error: unknown) => {
+				const errorMessage = error && typeof error === 'object' && 'message' in error 
+					? (error as {status: number, message: string}).message 
+					: 'An error occurred';
+				const errorStatus = error && typeof error === 'object' && 'status' in error 
+					? (error as {status: number, message: string}).status 
+					: 'Unknown';
+				toast.error(errorStatus + ": " + errorMessage);
+			})
 			.finally(() => setLoading(false));
 	}, [auction.id, setBids]);
 

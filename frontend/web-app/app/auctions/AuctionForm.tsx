@@ -54,8 +54,14 @@ export default function AuctionForm({auction}: Props) {
 				throw res.error;
 			}
 			router.push(`/auctions/details/${res.id}`);
-		} catch (error: any) {
-			toast.error(error.status + ": " + error.message);
+		} catch (error: unknown) {
+			const errorMessage = error && typeof error === 'object' && 'message' in error 
+				? (error as {status: number, message: string}).message 
+				: 'An error occurred';
+			const errorStatus = error && typeof error === 'object' && 'status' in error 
+				? (error as {status: number, message: string}).status 
+				: 'Unknown';
+			toast.error(errorStatus + ": " + errorMessage);
 		}
 	}
 

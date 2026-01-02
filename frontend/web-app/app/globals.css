@@ -1,18 +1,4 @@
-@import "tailwindcss";
-/* @plugin "flowbite-react/plugin/tailwindcss"; */
-/* @source "../.flowbite-react/class-list.json"; */
-@config "../tailwind.config.js";
-
-[role="button"], button {
-  cursor: pointer;
-}
-
-.react-datepicker-wrapper {
-  width: 100% !important;
-}
-
-@layer components{
-  .input-custom{
-    @apply flex-grow pl-5 bg-transparent focus:outline-none border-transparent focus:ring-0 text-sm text-gray-600
-  }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* ... rest of your styles */

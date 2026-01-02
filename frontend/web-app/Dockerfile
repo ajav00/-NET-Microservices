@@ -1,10 +1,10 @@
-
 FROM node:22-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY frontend/web-app/package*.json ./
-RUN  npm install --omit-dev --legacy-peer-deps
+# Install all dependencies (including devDependencies) for the build stage
+RUN npm install --legacy-peer-deps
 
 FROM node:22-alpine AS builder
 WORKDIR /app
@@ -12,6 +12,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY frontend/web-app ./
 
 ENV NEXT_TELEMETRY_DISABLED 1
+
+# Rebuild native modules to ensure Alpine compatibility
+RUN npm rebuild --legacy-peer-deps
 
 RUN npm run build
 
