@@ -55,9 +55,9 @@ export const Filters = () => {
 
 
     return (
-        <div className='flex justify-between items-center mb-4'>
+        <div className='flex justify-between items-center mb-5'>
 
-            <div>
+            <div className='flex flex-col gap-2'>
                 <span className='uppercase text-sm text-gray-500 mr-2'>
                     Filter by
                 </span>
@@ -78,7 +78,7 @@ export const Filters = () => {
                 </ButtonGroup>
             </div>
 
-            <div>
+            <div className='flex flex-col gap-2'>
                 <span className='uppercase text-sm text-gray-500 mr-2'>
                     Order by
                 </span>
@@ -99,17 +99,17 @@ export const Filters = () => {
                 </ButtonGroup>
             </div>
 
-            <div>
+            <div className='flex flex-col gap-2'>
                 <span className='uppercase text-sm text-gray-500 mr-2'>
                     Page size
                 </span>
                 <ButtonGroup className='flex'>
                 {pageSizeButtons.map((value, i)=>(
                         <Button
-                        className='focus:ring-0 '
+                        className='focus:ring-0 border border-gray-300'
                         key={i}
                         onClick={() => setParams({pageSize: value})}
-                        color={`${pageSize === value ? 'red' : 'gray'}`}
+                        color={`${pageSize === value ? 'cyan' : ''}`}
                     >
                         {value}
                     </Button>
