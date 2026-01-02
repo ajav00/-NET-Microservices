@@ -61,7 +61,7 @@ export const Filters = () => {
                 <span className='uppercase text-sm text-gray-500 mr-2'>
                     Filter by
                 </span>
-                <Button.Group>
+                <ButtonGroup>
                     {
                         filterButtons.map(({label, icon: Icon, value})=>(
                             <Button
@@ -75,14 +75,14 @@ export const Filters = () => {
                             </Button>
                         ))
                     }
-                </Button.Group>
+                </ButtonGroup>
             </div>
 
             <div>
                 <span className='uppercase text-sm text-gray-500 mr-2'>
                     Order by
                 </span>
-                <Button.Group>
+                <ButtonGroup>
                     {
                         orderButtons.map(({label, icon: Icon, value})=>(
                             <Button
@@ -96,14 +96,14 @@ export const Filters = () => {
                             </Button>
                         ))
                     }
-                </Button.Group>
+                </ButtonGroup>
             </div>
 
             <div>
                 <span className='uppercase text-sm text-gray-500 mr-2'>
                     Page size
                 </span>
-                <ButtonGroup>
+                <ButtonGroup className='flex'>
                 {pageSizeButtons.map((value, i)=>(
                         <Button
                         className='focus:ring-0 '

@@ -27,7 +27,7 @@ export const Search = () => {
 				onChange={onChange}
 				type="text"
 				placeholder="Search for cars ny make, model or color"
-				className="input-custom"
+				className="input-custom border-0 outline-none focus:ring-0 w-full ml-5"
 			/>
 			<button onClick={search}>
 				<FaSearch
