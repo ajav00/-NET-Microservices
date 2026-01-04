@@ -45,14 +45,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Lifetime.ApplicationStarted.Register(async () => {
-    try
-    {
-        await DbInitializer.InitDB(app);    
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine(ex);
-    }
+
+    await Policy.Handle<TimeoutException>()
+        .WaitAndRetryAsync(5, _ => TimeSpan.FromSeconds(10))
+        .ExecuteAndCaptureAsync(async () => await DbInitializer.InitDB(app));
 });
 
 app.Run();

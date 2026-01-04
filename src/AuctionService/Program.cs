@@ -1,9 +1,11 @@
 using AuctionService.Consumers;
 using AuctionService.Data;
-using MassTransit;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using AuctionService.Services;
+using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +18,11 @@ builder.Services.AddDbContext<AuctionDbContext>(options =>
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddMassTransit(x => {
+builder.Services.AddMassTransit(x =>
+{
 
-    x.AddEntityFrameworkOutbox<AuctionDbContext>(o => {
+    x.AddEntityFrameworkOutbox<AuctionDbContext>(o =>
+    {
         o.QueryDelay = TimeSpan.FromSeconds(10);
         o.UsePostgres();
         o.UseBusOutbox();
@@ -27,8 +31,10 @@ builder.Services.AddMassTransit(x => {
     x.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
     x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auction", false));
 
-    x.UsingRabbitMq((ctx, cfg) => {
-        cfg.Host(builder.Configuration["RabbitMq:Host"], "/", host =>{
+    x.UsingRabbitMq((ctx, cfg) =>
+    {
+        cfg.Host(builder.Configuration["RabbitMq:Host"], "/", host =>
+        {
             host.Username(builder.Configuration.GetValue("RabbitMq:Username", "guest"));
             host.Password(builder.Configuration.GetValue("RabbitMq:Password", "guest"));
         });
@@ -54,12 +60,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.MapGrpcService<GrpcAuctionService>();
-try
-{
-    DbInitializer.InitDB(app);
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex);
-}
+
+var retryPolicy = Policy
+    .Handle<NpgsqlException>()
+    .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(10));
+
+retryPolicy.ExecuteAndCapture(() => DbInitializer.InitDB(app));
+
 app.Run();
