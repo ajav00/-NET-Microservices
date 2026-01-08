@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bid-svc
+spec:
+  selector:
+    matchLabels:
+      app: bid-svc
+  template:
+    metadata:
+      labels:
+        app: bid-svc
+    spec:
+      containers:
+        - name: bid-svc
+          image: ajav00/bid-svc
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: bid-svc-config
+          ports:
+            - containerPort: 80
+              name: web
+            - containerPort: 7777
+              name: grpc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bid-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: bid-svc
+  ports:
+    - name: web
+      port: 80
+      targetPort: 80

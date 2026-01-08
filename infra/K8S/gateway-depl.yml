@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-svc
+spec:
+  selector:
+    matchLabels:
+      app: gateway-svc
+  template:
+    metadata:
+      labels:
+        app: gateway-svc
+    spec:
+      containers:
+        - name: gateway-svc
+          image: ajav00/gateway-svc
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: gateway-svc-config
+          ports:
+            - containerPort: 80
+              name: web
+            - containerPort: 7777
+              name: grpc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: gateway-svc
+  ports:
+    - name: web
+      port: 80
+      targetPort: 80
