@@ -168,6 +168,7 @@ services:
       - AUTH_URL_INTERNAL=http://web-app:3000
       - VIRTUAL_HOST=app.carsties.local
       - VIRTUAL_PORT=3000
+      - NOTIFY_URL=https://api.carsties.local/notifications
   nginx-proxy:
     image: nginxproxy/nginx-proxy
     container_name: nginx-proxy

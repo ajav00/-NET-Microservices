@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-svc
+spec:
+  selector:
+    matchLabels:
+      app: webapp-svc
+  template:
+    metadata:
+      labels:
+        app: webapp-svc
+    spec:
+      containers:
+        - name: webapp-svc
+          image: ajav00/web-app
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: webapp-svc-config
+          ports:
+            - containerPort: 80
+              name: web
+            - containerPort: 7777
+              name: grpc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: webapp-svc
+  ports:
+    - name: web
+      port: 80
+      targetPort: 80
